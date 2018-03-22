@@ -52,7 +52,17 @@ public class Paciente implements Comparable<Paciente>{
 
     @Override
     public int compareTo(Paciente o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int resultado = 0;
+        
+        if(this.prioridad.compareTo(o.prioridad) < 0){
+            resultado = -1;
+        }else if(this.prioridad.compareTo(o.prioridad) > 0){
+            resultado = 1;
+        }else{
+            resultado = 0;
+        }
+        
+        return resultado;
     }
     
 }

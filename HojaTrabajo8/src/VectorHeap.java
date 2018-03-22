@@ -1,7 +1,8 @@
 
+import java.util.Iterator;
 import java.util.Vector;
 
-public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>{
+public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQueue<E> {
 
 	protected Vector<E> data; // the data, kept in heap order
 
@@ -49,11 +50,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>{
             E value = data.get(leaf);
             
             while (leaf > 0 && (value.compareTo(data.get(parent)) < 0)){
-                data.set(leaf,data.get(parent));
+                data.set(leaf, data.get(parent));
                 leaf = parent;
                 parent = parent(leaf);
             }
-            data.set(leaf,value);
+            data.set(leaf, value);
 	}
 
         @Override
@@ -100,7 +101,7 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>{
 	// post: returns and removes minimum value from queue
 	{
             E minVal = getFirst();
-            data.set(0,data.get(data.size()-1));
+            data.set(0, data.get(data.size()-1));
             data.setSize(data.size()-1);
             if (data.size() > 1) pushDownRoot(0);
             return minVal;
@@ -108,22 +109,27 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E>{
 
     @Override
     public E getFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return data.get(0);
     }
 
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            return !data.isEmpty();
     }
 
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return data.size();
     }
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        data.removeAllElements();
+    }
+
+    @Override
+    public Iterator iterator() {
+        return data.iterator();
     }
     
 }
