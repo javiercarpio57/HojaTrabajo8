@@ -93,15 +93,10 @@ public class VectorHeapTest {
         paciente.add(pac1);
         
         
+        String expectedNombre = paciente.remove().getNombre();
+        String value = "Maria Ramirez";
         
-        
-        System.out.println(paciente.remove().toString());
-        System.out.println(paciente.remove().toString());
-        
-//        String expectedNombre = paciente.remove().getNombre();
-//        String value = "Maria Ramirez";
-//        
-//        assertEquals(expectedNombre, value);
+        assertEquals(expectedNombre, value);
     }
 //
 //    /**
