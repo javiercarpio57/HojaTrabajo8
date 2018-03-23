@@ -103,7 +103,11 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
             E minVal = getFirst();
             data.set(0, data.get(data.size()-1));
             data.setSize(data.size()-1);
-            if (data.size() > 1) pushDownRoot(0);
+            if (data.size() > 1){
+                pushDownRoot(0);
+            }else{
+                System.out.println("Ya no hay pacientes para atender.");
+            }
             return minVal;
 	}
 
@@ -114,7 +118,7 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
 
     @Override
     public boolean isEmpty() {
-            return !data.isEmpty();
+            return data.isEmpty();
     }
 
     @Override
