@@ -47,15 +47,23 @@ public class Principal {
             //System.out.println(nombre + "-" + sintoma + "-" + prioridad);
             
             pacientes.add(new Paciente(nombre, sintoma, prioridad));
+            fr.close();
+            br1.close();
         }
         
-        fr.close();
-        br1.close();
-          
-        
-        
-        
-        
+        while (true)
+        {
+            System.out.println("1. Ver todos los pacientes");
+            System.out.println("2. Ver siguiente en la lista");
+            System.out.println("3. Atender al paciente");
+            
+            Scanner teclado = new Scanner(System.in);
+            String tipo=teclado.nextLine();
+            break;
+            
+            
+            
+        }
         
         //Sacar los pacientes
         System.out.println(pacientes.remove().toString());
