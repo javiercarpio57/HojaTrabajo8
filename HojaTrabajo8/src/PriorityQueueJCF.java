@@ -12,7 +12,7 @@ import java.util.PriorityQueue;
  * @author javie
  * @param <E>
  */
-public class PriorityQueueJCF<E>{
+public class PriorityQueueJCF<E>implements Iterable{
 
     /**
      *
@@ -44,6 +44,39 @@ public class PriorityQueueJCF<E>{
     }
     
     public E poll(){
+        if (datos.size()==0) 
+        {
+            System.out.println("Ya no hay mas pacientes! ");
+            
+        }
         return datos.poll();
     }
+
+    @Override
+    public Iterator iterator() 
+    {
+        return datos.iterator();
+    }
+    
+    public String imprimirTodo(PriorityQueueJCF<Paciente> pacientesP)
+        {
+            String respuesta="";
+            Iterator<Paciente> iterator = pacientesP.iterator();
+            while(iterator.hasNext())
+            {
+                respuesta+=iterator.next().toString()+"\n";
+                
+            }
+            return respuesta;
+        }
+    
+    public String next(PriorityQueueJCF<Paciente> pacientesP)
+        {
+            
+            Iterator<Paciente> iterator = pacientesP.iterator();
+            String respuesta=iterator.next().toString();
+            return respuesta;
+            
+        }
+    
 }

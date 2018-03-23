@@ -11,6 +11,29 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
 	{
 		data = new Vector<>();
 	}
+        
+        
+        public String imprimirTodo(VectorHeap<Paciente> pacientesV)
+        {
+            String respuesta="";
+            Iterator<Paciente> iterator = pacientesV.iterator();
+            while(iterator.hasNext())
+            {
+                respuesta+=iterator.next().toString()+"\n";
+                
+            }
+            return respuesta;
+        }
+        
+        public String next(VectorHeap<Paciente> pacientesV)
+        {
+            
+            Iterator<Paciente> iterator = pacientesV.iterator();
+            String respuesta=iterator.next().toString();
+            return respuesta;
+            
+        }
+        
 
 	public VectorHeap(Vector<E> v)
 	// post: constructs a new priority queue from an unordered vector
@@ -100,10 +123,16 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
 	// pre: !isEmpty()
 	// post: returns and removes minimum value from queue
 	{
-            E minVal = getFirst();
-            data.set(0, data.get(data.size()-1));
-            data.setSize(data.size()-1);
-            if (data.size() > 1){
+            E minVal=null; 
+            if (data.size()!=0) 
+            {
+                minVal= getFirst();
+                data.set(0, data.get(data.size()-1));
+                data.setSize(data.size()-1);
+                
+            }
+            
+            if (data.size() >= 1){
                 pushDownRoot(0);
             }else{
                 System.out.println("Ya no hay pacientes para atender.");

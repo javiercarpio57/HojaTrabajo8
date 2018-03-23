@@ -25,13 +25,23 @@ public class Principal {
         String linea = "";
         Scanner scanner = new Scanner(fr);
         
+        Scanner teclado = new Scanner(System.in);
+        String seleccion;
+        
         
         String nombre;
         String sintoma;
         String prioridad;
+        PriorityQueueJCF<Paciente> pacientesP=new PriorityQueueJCF<Paciente>();
+        VectorHeap<Paciente> pacientesV=new VectorHeap<Paciente>();
         
         //Vector<Paciente> pacientes = new Vector<>();
-        VectorHeap<Paciente> pacientes = new VectorHeap<>();
+        System.out.println("Ingrese 1 para realizar el programa implementando VectorHeap");
+        System.out.println("Ingrese 2 para realizar el programa implementando PriorityQueueJCF");
+        
+        String objeto=teclado.nextLine();
+        
+        
         
         while (scanner.hasNextLine()) {
             linea = scanner.nextLine();
@@ -46,7 +56,19 @@ public class Principal {
             
             //System.out.println(nombre + "-" + sintoma + "-" + prioridad);
             
-            pacientes.add(new Paciente(nombre, sintoma, prioridad));
+            if (objeto.equals("1")) 
+            {
+                pacientesV.add(new Paciente(nombre, sintoma, prioridad));
+                
+            }
+            else if(objeto.equals("2"))
+            {
+                pacientesP.add(new Paciente(nombre, sintoma, prioridad));
+                
+            }
+            
+            
+            
             fr.close();
             br1.close();
         }
@@ -56,26 +78,53 @@ public class Principal {
             System.out.println("1. Ver todos los pacientes");
             System.out.println("2. Ver siguiente en la lista");
             System.out.println("3. Atender al paciente");
+            System.out.println("4. Salir");
+            seleccion=teclado.nextLine();
             
-            Scanner teclado = new Scanner(System.in);
-            String tipo=teclado.nextLine();
-            break;
+            //OPCION 1
+            if (seleccion.equals("1") && objeto.equals("1")) 
+            {
+                System.out.println(pacientesV.imprimirTodo(pacientesV));
+                
+            }
+            else if (seleccion.equals("1") && objeto.equals("2")) 
+            {
+                System.out.println(pacientesP.imprimirTodo(pacientesP));
+            }
+            
+            //OPCION 2
+            if (seleccion.equals("2") && objeto.equals("1")) 
+            {
+                System.out.println(pacientesV.next(pacientesV));
+                
+            }
+            else if (seleccion.equals("2") && objeto.equals("2")) 
+            {
+                System.out.println(pacientesP.next(pacientesP));
+            }
+            //OPCION 3
+             if (seleccion.equals("3") && objeto.equals("1")) 
+            {
+                pacientesV.remove();
+                
+            }
+            else if (seleccion.equals("3") && objeto.equals("2")) 
+            {
+                pacientesP.poll();
+            }
             
             
-            
+            if (seleccion.equals("4")) 
+            {
+                break;
+                
+            }
+               
         }
         
-        //Sacar los pacientes
-        System.out.println(pacientes.remove().toString());
-        System.out.println(pacientes.remove().toString());
-        System.out.println(pacientes.remove().toString());
-        System.out.println(pacientes.remove().toString());
         
-        //Imprime el VectorHeap
-//        Iterator<Paciente> iterator = pacientes.iterator();
-//        while(iterator.hasNext()){
-//            System.out.println(iterator.next().toString());
-//        }
+        
+        
         
     }
     
