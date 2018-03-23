@@ -1,8 +1,9 @@
 
-import java.io.Serializable;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Queue;
+import java.util.Vector;
 
 
 
@@ -11,7 +12,13 @@ import java.util.Queue;
  * @author javie
  * @param <E>
  */
-public class PriorityQueueJCF<E> implements Serializable, Iterable<E>, Collection<E>, Queue<E>{
+public class PriorityQueueJCF<E> implements Iterable<E>, Collection<E>, Queue<E>{
+
+    protected Vector<E> data;
+    
+    public PriorityQueueJCF() {
+        data = new Vector<>();
+    }
     
     @Override
     public Iterator<E> iterator() {

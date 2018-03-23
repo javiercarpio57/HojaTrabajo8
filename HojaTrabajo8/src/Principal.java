@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Vector;
-
 
 /**
  *
@@ -54,12 +51,23 @@ public class Principal {
         
         fr.close();
         br1.close();
-           
+          
+        
+        
+        
+        
+        
+        //Sacar los pacientes
+        System.out.println(pacientes.remove().toString());
+        System.out.println(pacientes.remove().toString());
+        System.out.println(pacientes.remove().toString());
+        System.out.println(pacientes.remove().toString());
+        
         //Imprime el VectorHeap
-        Iterator<Paciente> iterator = pacientes.iterator();
-        while(iterator.hasNext()){
-            System.out.println(iterator.next().toString());
-        }
+//        Iterator<Paciente> iterator = pacientes.iterator();
+//        while(iterator.hasNext()){
+//            System.out.println(iterator.next().toString());
+//        }
         
     }
     
