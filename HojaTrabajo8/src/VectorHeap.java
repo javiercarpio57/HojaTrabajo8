@@ -6,13 +6,20 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
 
 	protected Vector<E> data; // the data, kept in heap order
 
+        /**
+         * Constructor de VectorHeap
+         * post: constructs a new priority queue
+         */
 	public VectorHeap()
-	// post: constructs a new priority queue
 	{
 		data = new Vector<>();
 	}
         
-        
+        /**
+         * Metodo para imprimir todo el contenido del vector
+         * @param pacientesV VectorHeap que contiene todos los pacientes
+         * @return un string concatenado todos los pacientes
+         */
         public String imprimirTodo(VectorHeap<Paciente> pacientesV)
         {
             String respuesta="";
@@ -25,6 +32,11 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
             return respuesta;
         }
         
+        /**
+         * Retorna el siguiente en la lista de pacientes
+         * @param pacientesV VectorHeap donde contiene todos los pacientes
+         * @return respuesta, el cual es el siguiente paciente
+         */
         public String next(VectorHeap<Paciente> pacientesV)
         {
             
@@ -35,8 +47,13 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
         }
         
 
+        /**
+         * Constructor de un VectorHeap a partir de uno existente
+         * @param v  VectorHeap existente
+         * post: constructs a new priority queue from an unordered vector
+         */
 	public VectorHeap(Vector<E> v)
-	// post: constructs a new priority queue from an unordered vector
+	// 
 	{
             int i;
             data = new Vector<>(v.size()); // we know ultimate size
@@ -44,30 +61,51 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
                 add(v.get(i));
             }
 	}
+        
+        /**
+         * Retorna el padre de un determinado nodo
+         * @param i la posicion actual
+         * @return el pafre del nodo
+         * post: returns parent of node at location i
+         * pre:0 mayor o igual i menor o igual
+         */
 	protected static int parent(int i)
-	// pre: 0 <= i < size
-	// post: returns parent of node at location i
 	{
             return (i-1)/2;
 	}
 
+        /**
+         * Retorna el nodo hijo izquierda de un determinado nodo
+         * @param i posicion actual 
+         * @return hijo izquierdo
+         * post: returns index of left child of node at location i
+         * pre: 0 mayor o igual i menor o igual
+         */
 	protected static int left(int i)
-	// pre: 0 <= i < size
-	// post: returns index of left child of node at location i
 	{
             return 2*i+1;
 	}
 
+        /**
+         * Retorna el nodo hijo derecho de un determinado nodo
+         * @param i posicion actual 
+         * @return hijo derecho
+         * post: returns index of right child of node at location i
+         * pre: 0 mayor o igual i menor o igual
+         */
 	protected static int right(int i)
-	// pre: 0 <= i < size
-	// post: returns index of right child of node at location i
 	{
             return (2*i+1) + 1;
 	}
 
+        
+        /**
+         * Mueve el nodo en la hoja indicada hasta la posicion apropiada
+         * @param leaf posicion de la hoja que se desea mover
+         * post: moves node at index leaf up to appropriate position
+         * pre: 0 mayor o igual i menor o igual
+         */
 	protected void percolateUp(int leaf)
-	// pre: 0 <= leaf < size
-	// post: moves node at index leaf up to appropriate position
 	{
             int parent = parent(leaf);
             E value = data.get(leaf);
@@ -80,19 +118,27 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
             data.set(leaf, value);
 	}
 
+        /**
+         * Agrega un valor al VectorHeap
+         * @param value el valor que se desea guardar
+         * pre: value is non-null comparable
+         * post: value is added to priority queue
+         */
         @Override
 	public void add(E value)
-	// pre: value is non-null comparable
-	// post: value is added to priority queue
 	{
             data.add(value);
             percolateUp(data.size()-1);
 	}
 
+        /**
+         * Mueve una raiz hasta su posicion apropiada
+         * @param root posocion de la raiz
+         * post: moves node at index root down
+         * to appropriate position in subtree
+         * pre: 0 mayor o igual i menor o igual
+         */
 	protected void pushDownRoot(int root)
-	// pre: 0 <= root < size
-	// post: moves node at index root down
-	// to appropriate position in subtree
 	{
             int heapSize = data.size();
             E value = data.get(root);
@@ -118,10 +164,14 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
             }
         }
 
+        /**
+         * Remueve el minimo valor del VectorHeap
+         * @return el minimovalor
+         * pre: !isEmpty()
+         * post: returns and removes minimum value from queue
+         */
         @Override
-	public E remove()
-	// pre: !isEmpty()
-	// post: returns and removes minimum value from queue
+	public E remove() 
 	{
             E minVal=null; 
             if (data.size()!=0) 
@@ -140,26 +190,45 @@ public class VectorHeap<E extends Comparable<E>> implements Iterable, PriorityQu
             return minVal;
 	}
 
+        /**
+         * devuelve el primer elemento del vectorHeap
+         * @return el elemento mas pequeno
+         */
     @Override
     public E getFirst() {
         return data.get(0);
     }
 
+    /**
+     * verifica si esta vacia el VectorHeap
+     * @return true si no contiene nada
+     */
     @Override
     public boolean isEmpty() {
             return data.isEmpty();
     }
 
+    /**
+     * Retorna el largo del VectorHeap
+     * @return largo del VH
+     */
     @Override
     public int size() {
         return data.size();
     }
 
+    /**
+     * elimina todos los elementos de VH
+     */
     @Override
     public void clear() {
         data.removeAllElements();
     }
 
+    /**
+     * Interador de VH
+     * @return iterador
+     */
     @Override
     public Iterator iterator() {
         return data.iterator();
